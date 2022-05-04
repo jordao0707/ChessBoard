@@ -17,7 +17,7 @@ typedef struct {
 }Square;
 
 void moveSquare( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs);
-void initSquare(float r, float g, float b,float init_x,float init_y, vector<Square*> *sqrs);
+void initSquare(float r, float g, float b, vector<Square*> *sqrs);
 void reposition(float init_x,float init_y, vector<Square*> *sqrs);
 void drawSquare(vector<Square*> *sqrs);
 #endif

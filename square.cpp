@@ -8,21 +8,25 @@
 
 using namespace std;
 
-void initSquare(float r, float g, float b,float init_x,float init_y, vector<Square*> *sqrs){
+void initSquare(float r, float g, float b, vector<Square*> *sqrs){
     Square *s = new Square;
     s->r_color = r ;
     s->g_color = g;
     s->b_color = b;
     s->w_square = 2.5;
     s->h_square = 2.5;
-    s->initx_square = init_x;
-    s->inity_square = init_y;
+    int size = sqrs->size();
+    if(size>=64){ 
+        cerr << "quantidade de objeto máxima 64"<< endl;
+        exit(1);
+    };
+    s->x_square = size%8;
+    s->y_square = size/8;
     sqrs->push_back(s);
 }
 
 void reposition(float init_x,float init_y,vector<Square*> *sqrs){
     if(sqrs->empty() == true)return;
-    
     for(Square *s : *sqrs){
         s->initx_square = init_x;
         s->inity_square = init_y;
@@ -31,27 +35,43 @@ void reposition(float init_x,float init_y,vector<Square*> *sqrs){
 
 void moveSquare( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs)
 {   
-    // if(sqrs->empty())return;
-
-    for(Square *s : *sqrs){
-        
-         if(s->is_select) {        
-            switch(action){ 
-                case GLFW_PRESS:
-                case GLFW_REPEAT: 
-                    if(key == GLFW_KEY_LEFT) s->x_square --;
+    for(Square *s : *sqrs){    
+        int x_before = s->x_square;
+        int y_before = s->y_square;
+           
+        switch(action){ 
+            case GLFW_PRESS:
+            case GLFW_REPEAT: 
+                if(s->is_select) {        
+            
+                    if(key == GLFW_KEY_LEFT) s->x_square--;
                     if(key == GLFW_KEY_RIGHT) s->x_square ++;
                     if(key == GLFW_KEY_DOWN) s->y_square --;
                     if(key == GLFW_KEY_UP) s->y_square ++;
-                break;                                 
-                default: break;        
-            }        
+                }
+            break;                                 
+            default: break;        
+        }  
+        // Restrições //
+        // limite do tabuleiro
+        s->x_square = s->x_square%8;
+        s->y_square = s->y_square%8;
+        s->x_square = s->x_square < 0?7:s->x_square;
+        s->y_square = s->y_square < 0?7:s->y_square;
+        
+        // colisão   
+        for(Square *q : *sqrs){
+            if(s->x_square == q->x_square 
+            && s->y_square == q->y_square
+            && s != q
+            ){
+                s->x_square = x_before;
+                s->y_square = y_before;
+            }
         }
-        // define o limite do tabuleiro
-        s->x_square = s->x_square>=0?s->x_square%8:7-(s->x_square%8); // TODO corrigir formula
-        s->y_square = s->y_square>=0?s->y_square%8:7-(s->y_square%8);
-
+         
     }
+
 }
 void drawSquare(vector<Square*> *sqrs){
     // printf("é selecionado %d\n",s->is_select);
