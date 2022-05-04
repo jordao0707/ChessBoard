@@ -88,7 +88,7 @@ int main(int argc, char** argv){
     // "contrutor" do Square com valores iniciais
     initSquare(1.0,5.0,0.0,initx_board,inity_board, &squares);
     initSquare(0.4,1.0,0.0,initx_board,inity_board, &squares);
-    initSquare(0.4,1.0,1.0,initx_board,inity_board +3 , &squares);
+    initSquare(0.0,1.0,1.0,initx_board,inity_board -1, &squares);
     
     squares.at(0)->is_select = 1;
     

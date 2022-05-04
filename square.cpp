@@ -65,7 +65,7 @@ void drawSquare(vector<Square*> *sqrs){
             glVertex2f(x+s->w_square, y+s->h_square);
             glVertex2f(x           , y+s->h_square);
         glEnd();    
-        if(s->is_select) {
+        if(s->is_select == true) {
             glBegin(GL_LINE_LOOP);
                 glColor3f(0, 0, 0);             
                 glVertex2f(x           , y); 
