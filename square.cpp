@@ -8,76 +8,83 @@
 
 using namespace std;
 
-void initSquare(float r, float g, float b, vector<Square*> *sqrs){
-    Square *s = new Square;
-    s->r_color = r ;
-    s->g_color = g;
-    s->b_color = b;
-    s->w_square = 2.5;
-    s->h_square = 2.5;
+void createSquares( vector<Square*> *sqrs){
     int size = sqrs->size();
     if(size>=64){ 
-        cerr << "quantidade de objeto máxima 64"<< endl;
-        exit(1);
+        cerr << "quantidade de objetos máxima 64"<< endl;
+        return;
     };
+    Square *s = new Square;
+    s->r_color = (float)(rand()%64)/(float)64;
+    s->g_color = (float)(rand()%64)/(float)64;
+    s->b_color = (float)(rand()%64)/(float)64;
+
+    s->r_color = s->r_color||s->r_color == 1?s->r_color : 0.2 ;
+    s->g_color = s->g_color||s->g_color == 1?s->g_color : 0.4 ;
+    s->b_color = s->b_color||s->b_color == 1?s->b_color : 0.6 ;
+    s->w_square = 2.5;
+    s->h_square = 2.5;
+    
     s->x_square = size%8;
     s->y_square = size/8;
     sqrs->push_back(s);
 }
-
-void reposition(float init_x,float init_y,vector<Square*> *sqrs){
-    if(sqrs->empty() == true)return;
-    for(Square *s : *sqrs){
-        s->initx_square = init_x;
-        s->inity_square = init_y;
-    }
+void deleteSquares( vector<Square*> *sqrs){
+    if(sqrs->size()<=0){ 
+        cerr << "quantidade de objetos mínima"<< endl;
+        return;
+    };
+    sqrs->pop_back();
 }
 
-void moveSquare( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs)
+void controlSquares( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs)
 {   
-    for(Square *s : *sqrs){    
-        int x_before = s->x_square;
-        int y_before = s->y_square;
-           
-        switch(action){ 
-            case GLFW_PRESS:
-            case GLFW_REPEAT: 
-                if(s->is_select) {        
+    switch(action){ 
+        case GLFW_PRESS:
+        case GLFW_REPEAT: 
+            if(key == GLFW_KEY_C)createSquares(sqrs);
+            if(key == GLFW_KEY_BACKSPACE)deleteSquares(sqrs);
             
-                    if(key == GLFW_KEY_LEFT) s->x_square--;
-                    if(key == GLFW_KEY_RIGHT) s->x_square ++;
-                    if(key == GLFW_KEY_DOWN) s->y_square --;
-                    if(key == GLFW_KEY_UP) s->y_square ++;
-                }
-            break;                                 
-            default: break;        
-        }  
-        // Restrições //
-        // limite do tabuleiro
-        s->x_square = s->x_square%8;
-        s->y_square = s->y_square%8;
-        s->x_square = s->x_square < 0?7:s->x_square;
-        s->y_square = s->y_square < 0?7:s->y_square;
-        
-        // colisão   
-        for(Square *q : *sqrs){
-            if(s->x_square == q->x_square 
-            && s->y_square == q->y_square
-            && s != q
-            ){
-                s->x_square = x_before;
-                s->y_square = y_before;
+            for(Square *s : *sqrs){    
+                int x_before = s->x_square;
+                int y_before = s->y_square;
+                
+                        if(s->is_select) {        
+                            if(key == GLFW_KEY_LEFT) glTranslatef( (float)s->x_square--,(float)s->y_square,0);
+                            if(key == GLFW_KEY_RIGHT) s->x_square ++;
+                            if(key == GLFW_KEY_DOWN) s->y_square --;
+                            if(key == GLFW_KEY_UP) s->y_square ++;
+                        }
+                // Restrições //
+                // limite do tabuleiro
+                s->x_square = s->x_square%8;
+                s->y_square = s->y_square%8;
+                s->x_square = s->x_square < 0?7:s->x_square;
+                s->y_square = s->y_square < 0?7:s->y_square;
+                
+                // colisão   
+                for(Square *q : *sqrs){
+                    if(s->x_square == q->x_square 
+                    && s->y_square == q->y_square
+                    && s != q
+                    ){
+                        s->x_square = x_before;
+                        s->y_square = y_before;
+                    }
+                }    
             }
-        }
-         
-    }
-
+        break;                                 
+        default: break;        
+    }  
+       
 }
-void drawSquare(vector<Square*> *sqrs){
-    // printf("é selecionado %d\n",s->is_select);
+
+
+void drawSquare(int initx,int inity,vector<Square*> *sqrs){
+    glTranslatef(initx,inity,0.0);
     for(Square *s : *sqrs){
-        float x = s->initx_square + s->x_square*(s->w_square);
-        float y = s->inity_square + s->y_square*(s->h_square);                  
+        float x = s->x_square*(s->w_square);
+        float y = s->y_square*(s->h_square);                  
         glBegin(GL_QUADS);
             glColor3f(s->r_color, s->g_color, s->b_color);             
             glVertex2f(x           , y); 
@@ -94,7 +101,6 @@ void drawSquare(vector<Square*> *sqrs){
                 glVertex2f(x           , y+s->h_square);
             glEnd();   
         } 
-    }
-    
+    }    
 }
 

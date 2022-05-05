@@ -16,8 +16,6 @@ typedef struct {
     unsigned int is_focus = 0;
 }Square;
 
-void moveSquare( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs);
-void initSquare(float r, float g, float b, vector<Square*> *sqrs);
-void reposition(float init_x,float init_y, vector<Square*> *sqrs);
-void drawSquare(vector<Square*> *sqrs);
+void controlSquares( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs);
+void drawSquare(int initx,int inity,vector<Square*> *sqrs);
 #endif

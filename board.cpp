@@ -2,6 +2,7 @@
 // #include <stdio.h>
 
 void drawBoard(float w, float h, float initx, float inity){
+    glTranslatef(0.0,0.0,0.0);
     for(int i=0; i< 8 ; i++){
         for(int j=0; j<8;j++ ){
             glBegin(GL_QUADS);
