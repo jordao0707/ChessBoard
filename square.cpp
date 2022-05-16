@@ -25,8 +25,15 @@ void createSquares( vector<Square*> *sqrs){
     s->w_square = 2.5;
     s->h_square = 2.5;
     
+    for(Square *s : *sqrs){ 
+        if(s->x_square == size%8 && s->y_square == size/8){
+           cerr << "mova o objeto do ponteiro de criação" << endl;
+           return;    
+        }
+    }
     s->x_square = size%8;
     s->y_square = size/8;
+    
     sqrs->push_back(s);
 }
 void deleteSquares( vector<Square*> *sqrs){
@@ -50,10 +57,10 @@ void controlSquares( GLFWwindow * window, int key, int scancode, int action, int
                 int y_before = s->y_square;
                 
                         if(s->is_select) {        
-                            if(key == GLFW_KEY_LEFT) glTranslatef( (float)s->x_square--,(float)s->y_square,0);
-                            if(key == GLFW_KEY_RIGHT) s->x_square ++;
-                            if(key == GLFW_KEY_DOWN) s->y_square --;
-                            if(key == GLFW_KEY_UP) s->y_square ++;
+                            if(key == GLFW_KEY_LEFT)glTranslatef((float)s->x_square-- ,(float)s->y_square  ,0);
+                            if(key == GLFW_KEY_RIGHT)glTranslatef((float)s->x_square++,(float)s->y_square  ,0);
+                            if(key == GLFW_KEY_DOWN)glTranslatef((float)s->x_square   ,(float)s->y_square--,0);
+                            if(key == GLFW_KEY_UP)glTranslatef((float)s->x_square     ,(float)s->y_square++,0);
                         }
                 // Restrições //
                 // limite do tabuleiro
@@ -81,10 +88,12 @@ void controlSquares( GLFWwindow * window, int key, int scancode, int action, int
 
 
 void drawSquare(int initx,int inity,vector<Square*> *sqrs){
+    int size = sqrs->size();
     glTranslatef(initx,inity,0.0);
     for(Square *s : *sqrs){
         float x = s->x_square*(s->w_square);
-        float y = s->y_square*(s->h_square);                  
+        float y = s->y_square*(s->h_square);
+        // desenha os quadrados   
         glBegin(GL_QUADS);
             glColor3f(s->r_color, s->g_color, s->b_color);             
             glVertex2f(x           , y); 
@@ -92,6 +101,7 @@ void drawSquare(int initx,int inity,vector<Square*> *sqrs){
             glVertex2f(x+s->w_square, y+s->h_square);
             glVertex2f(x           , y+s->h_square);
         glEnd();    
+        // Linha que mostra o quadrado selecionado
         if(s->is_select == true) {
             glBegin(GL_LINE_LOOP);
                 glColor3f(0, 0, 0);             
@@ -100,7 +110,17 @@ void drawSquare(int initx,int inity,vector<Square*> *sqrs){
                 glVertex2f(x+s->w_square, y+s->h_square);
                 glVertex2f(x           , y+s->h_square);
             glEnd();   
-        } 
-    }    
+        }
+    }
+    // linha que mostra onde vai ser criado o próximo quadrado
+    glBegin(GL_LINE_LOOP);
+        float x = size%8*(2.5);
+        float y = size/8*(2.5);  
+        glColor3f(1.0, 0.6, 0.2);             
+        glVertex2f(x    , y); 
+        glVertex2f(x+2.5, y);  
+        glVertex2f(x+2.5, y+2.5);
+        glVertex2f(x    , y+2.5);
+    glEnd();         
 }
 
