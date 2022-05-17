@@ -1,6 +1,6 @@
 #include <GL/gl.h>
 // #include <stdio.h>
-#include "./headers/consts.h"
+#include "../headers/consts.h"
 void drawBoard(){
     float w = BOARD_SIZE;
     float h = BOARD_SIZE;

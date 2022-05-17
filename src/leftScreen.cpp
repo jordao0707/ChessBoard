@@ -1,7 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
 #include <vector>  
-#include "./headers/consts.h"
+#include "../headers/consts.h"
 
 void leftScreenResize(GLFWwindow *window)
 {    

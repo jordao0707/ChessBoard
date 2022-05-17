@@ -2,7 +2,7 @@
 #include <GL/gl.h>
 #include <stdio.h>
 #include <math.h>
-#include "./headers/square.h"
+#include "../headers/square.h"
 #include <vector> 
 #include <iostream>
 using namespace std;

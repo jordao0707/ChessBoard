@@ -1,7 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 #include <GL/gl.h>
-#include "./headers/consts.h"
+#include "../headers/consts.h"
 
 float eyey = -2; 
 float eyex = -2;
