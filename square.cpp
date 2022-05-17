@@ -87,9 +87,8 @@ void controlSquares( GLFWwindow * window, int key, int scancode, int action, int
 }
 
 
-void drawSquare(int initx,int inity,vector<Square*> *sqrs){
+void drawSquare(vector<Square*> *sqrs){
     int size = sqrs->size();
-    glTranslatef(initx,inity,0.0);
     for(Square *s : *sqrs){
         float x = s->x_square*(s->w_square);
         float y = s->y_square*(s->h_square);

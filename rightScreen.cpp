@@ -1,6 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 #include <GL/gl.h>
+#include "./headers/consts.h"
 
 float eyey = -2; 
 float eyex = -2;
@@ -11,17 +12,12 @@ float lz = -1;
 
 void rightScreenResize(GLFWwindow *window, float lx, float ly)
 {    
-   
     int w, h;
     glfwGetFramebufferSize(window,&w,&h);
-    glViewport(w/2,0, w/2,h);
+    w = (w/2) ;
+    glViewport(w + BORDER,0, w - BORDER,h);
     glLoadIdentity();
-
-    glMatrixMode(GL_PROJECTION);                              //Habilita matriz de projeção
-    glLoadIdentity();                                       //OpenGL classico = carrega a matriz identidade
     glFrustum(-1,1,-1,1,3,200);                             //OpenGL classico = matriz de projeção em perspectiva
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();         
     gluLookAt(
         eyex, eyey, eyez,
         lx, ly, lz,

@@ -1,20 +1,26 @@
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
 #include <vector>  
+#include "./headers/consts.h"
 
-
-void leftScreenResize(GLFWwindow *window, float *initx, float *inity)
+void leftScreenResize(GLFWwindow *window)
 {    
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     int w, h;
     glfwGetFramebufferSize(window,&w,&h);
-    w = w/2;   
-    // ortho screen(1)
+    w = (w/2) - BORDER;   
     glViewport(0,0, w,h);
-    glLoadIdentity();
+    glLoadIdentity(); 
+    
     float aspect = (float)w / (float)h;
     // o tabuleiro sempre fica no canto inferior da tela
-    *initx = -10*(w>=h?aspect:1);
-    *inity =  -10/(w<h?aspect:1);
-    glOrtho(*initx,-(*initx),*inity,-(*inity),1,-1);      
+    float initx = 10*(w >=h?aspect:1);
+    float inity = 10/(w < h?aspect:1);
+    
+    
+    glOrtho(-initx, initx, -inity, inity, 1, -1);
+    // pões todos os objetos na origem do sistema     
+    glTranslatef(-initx,-inity,0.0);
 }
+// por algum motivo eu não sei pq esta dando errado a projeção
+// quando aplico as funções glModelView e glMatrixMode. Fui obrigado a tirar para fazer
+// esse codigo funcionar

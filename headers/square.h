@@ -17,5 +17,5 @@ typedef struct {
 }Square;
 
 void controlSquares( GLFWwindow * window, int key, int scancode, int action, int mods, vector<Square*> *sqrs);
-void drawSquare(int initx,int inity,vector<Square*> *sqrs);
+void drawSquare(vector<Square*> *sqrs);
 #endif
