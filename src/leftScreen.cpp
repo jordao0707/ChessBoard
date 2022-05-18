@@ -1,3 +1,6 @@
+// Autor: Jordão Rodrigues Dantas
+// Mátricula: 403686
+// ///// CHESS BOARD //////
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
 #include <vector>  
@@ -10,7 +13,6 @@ void leftScreenResize(GLFWwindow *window)
     w = (w/2) - BORDER;   
     glViewport(0,0, w,h);
     glLoadIdentity(); 
-    
     float aspect = (float)w / (float)h;
     // o tabuleiro sempre fica no canto inferior da tela
     float initx = 10*(w >=h?aspect:1);

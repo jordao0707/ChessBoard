@@ -1,3 +1,6 @@
+//  Autor: Jordão Rodrigues Dantas
+//  Mátricula: 403686
+// /// CHESS BOARD //////
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -40,8 +43,7 @@ int main(int argc, char** argv)
     while (!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         // desenho da janela esquedar
-        leftScreenResize(window);
-             
+        leftScreenResize(window);   
         drawBoard();
         drawSquare(&squares);
         // desenho da janela direito

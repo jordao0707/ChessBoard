@@ -1,3 +1,6 @@
+// Autor: Jordão Rodrigues Dantas
+// Mátricula: 403686
+// ///// CHESS BOARD //////
 #ifndef _SQUARE_
 #define _SQUARE_
 #include <GLFW/glfw3.h>

@@ -1,3 +1,6 @@
+// Autor: Jordão Rodrigues Dantas
+// Mátricula: 403686
+// ///// CHESS BOARD //////
 #ifndef _MOUSE_
 #define _MOUSE_
 #include <vector>

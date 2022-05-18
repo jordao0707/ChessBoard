@@ -1,3 +1,6 @@
+// Autor: Jordão Rodrigues Dantas
+// Mátricula: 403686
+// ///// CHESS BOARD //////
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 #include <GL/gl.h>
@@ -7,8 +10,8 @@
 float eyey = -2; 
 float eyex = -2;
 float eyez = -2;
-float ly = 0; 
 float lx = 0;
+float ly = 0; 
 float lz = -1;
 
 using namespace std;

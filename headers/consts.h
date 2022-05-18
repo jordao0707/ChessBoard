@@ -1,3 +1,6 @@
+// Autor: Jordão Rodrigues Dantas
+// Mátricula: 403686
+// ///// CHESS BOARD //////
 #define PROJ_NAME "CHESS BOARD"
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 400
