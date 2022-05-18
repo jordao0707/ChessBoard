@@ -35,7 +35,10 @@ void mouseAction(GLFWwindow* window, int button, int action, int mods, vector<Sq
                 s->is_select = true;
     }
     if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){ 
-        // Square *focused;
+        for(Square *s : *sqrs)s->is_focus = false;
+        for(Square *s : *sqrs)          
+            if((mouse_x == s->x_square )&&(mouse_y == s->y_square))
+                s->is_focus = true;
     }    
 }
 

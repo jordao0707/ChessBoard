@@ -2,6 +2,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <math.h>
+
+#include "../headers/object.h"
 #include "../headers/square.h"
 #include "../headers/mouse.h"
 #include "../headers/board.h"
@@ -42,9 +44,13 @@ int main(int argc, char** argv)
              
         drawBoard();
         drawSquare(&squares);
-       // desenho da janela direito
-        rightScreenResize(window, 0 , 0);
+        // desenho da janela direito
+        
+        rightScreenResize(window,&squares);
         drawBoard();
+        drawSquare(&squares);
+        
+        // drawCubes(&squares);
         //controle de evento e troca de buffers
         glfwSwapBuffers(window);
         glfwPollEvents();

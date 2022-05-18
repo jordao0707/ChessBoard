@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "../headers/square.h"
+#include "../headers/consts.h"
 #include <vector> 
 #include <iostream>
 
@@ -22,8 +23,8 @@ void createSquares( vector<Square*> *sqrs){
     s->r_color = s->r_color||s->r_color == 1?s->r_color : 0.2 ;
     s->g_color = s->g_color||s->g_color == 1?s->g_color : 0.4 ;
     s->b_color = s->b_color||s->b_color == 1?s->b_color : 0.6 ;
-    s->w_square = 2.5;
-    s->h_square = 2.5;
+    s->w_square = BOARD_SIZE;
+    s->h_square = BOARD_SIZE;
     
     for(Square *s : *sqrs){ 
         if(s->x_square == size%8 && s->y_square == size/8){
