@@ -1,13 +1,8 @@
 // Autor: Jordão Rodrigues Dantas
 // Mátricula: 403686
 // ///// CHESS BOARD //////
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <stdio.h>
-#include <math.h>
 #include "../headers/square.h"
 #include "../headers/consts.h"
-#include <vector> 
 #include <iostream>
 
 using namespace std;

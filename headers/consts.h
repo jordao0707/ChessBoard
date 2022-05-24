@@ -1,6 +1,10 @@
 // Autor: Jordão Rodrigues Dantas
 // Mátricula: 403686
 // ///// CHESS BOARD //////
+#include <GLFW/glfw3.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+#include <vector>
 #define PROJ_NAME "CHESS BOARD"
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 400

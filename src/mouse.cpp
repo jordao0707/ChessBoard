@@ -1,13 +1,10 @@
 // Autor: Jordão Rodrigues Dantas
 // Mátricula: 403686
 // ///// CHESS BOARD //////
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <stdio.h>
-#include <math.h>
+
 #include "../headers/square.h"
-#include <vector> 
-#include <iostream>
+#include <math.h>
+
 using namespace std;
 double mouse_x = 0;
 double mouse_y = 0; 

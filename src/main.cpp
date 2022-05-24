@@ -1,19 +1,15 @@
 //  Autor: Jordão Rodrigues Dantas
 //  Mátricula: 403686
 // /// CHESS BOARD //////
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <math.h>
-
-#include "../headers/object.h"
-#include "../headers/square.h"
-#include "../headers/mouse.h"
-#include "../headers/board.h"
+ 
 #include "../headers/consts.h"
+#include "../headers/board.h"
+#include "../headers/object.h"
+#include "../headers/mouse.h"
+#include "../headers/square.h"
 #include "../headers/leftScreen.h"
 #include "../headers/rightScreen.h"
-#include <vector>  
+
 
 float initx = 0;
 float inity = 0;
@@ -30,6 +26,8 @@ void mouseActionHere(GLFWwindow* window, int button, int action, int mods){
 
 int main(int argc, char** argv)
 {   
+   Cubo c;
+       
     // configuração e inicializaçã da janela
     glfwInit();
     GLFWwindow *window;
@@ -42,13 +40,14 @@ int main(int argc, char** argv)
     
     while (!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // desenho da janela esquedar
+        // // desenho da janela esquedar
         leftScreenResize(window);   
         drawBoard();
         drawSquare(&squares);
         // desenho da janela direito
         
         rightScreenResize(window,&squares);
+        //  c.desenha();
         drawBoard();
         drawSquare(&squares);
         

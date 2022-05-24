@@ -1,11 +1,8 @@
 // Autor: Jordão Rodrigues Dantas
 // Mátricula: 403686
-// ///// CHESS BOARD //////
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <vector>  
+// ///// CHESS BOARD //////  
 #include "../headers/consts.h"
-
+#include <math.h>
 void leftScreenResize(GLFWwindow *window)
 {    
     int w, h;
@@ -22,6 +19,7 @@ void leftScreenResize(GLFWwindow *window)
     glOrtho(-initx, initx, -inity, inity, 1, -1);
     // pões todos os objetos na origem do sistema     
     glTranslatef(-initx,-inity,0.0);
+    
 }
 // por algum motivo eu não sei pq esta dando errado a projeção
 // quando aplico as funções glModelView e glMatrixMode. Fui obrigado a tirar para fazer

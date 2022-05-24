@@ -1,8 +1,7 @@
 // Autor: Jordão Rodrigues Dantas
 // Mátricula: 403686
 // ///// CHESS BOARD //////
-#include <GL/gl.h>
-// #include <stdio.h>
+
 #include "../headers/consts.h"
 void drawBoard(){
     float w = BOARD_SIZE;
